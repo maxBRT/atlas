@@ -20,7 +20,8 @@
     "lucide-react": "^0.545.0",
     "react": "^19",
     "react-dom": "^19",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "@atlas/types": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",

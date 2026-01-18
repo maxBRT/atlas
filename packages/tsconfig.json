@@ -24,9 +24,6 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "baseUrl": ".",
-    "paths": {
-      "@atlas/types/*": ["../packages/types/src/*"]
-    }
+    "noPropertyAccessFromIndexSignature": false
   }
+}
