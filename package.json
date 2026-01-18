@@ -1,8 +1,22 @@
 {
     "name": "atlas",
-    "workspaces": [
-        "backend",
-        "frontend",
-        "packages/*"
-    ]
+    "module": "index.ts",
+    "scripts": {
+        "dev": "bun --watch ./src/server.ts",
+        "build": "bun run ./build.ts"
+    },
+    "type": "module",
+    "private": true,
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "@types/react": "^19.2.8",
+        "@types/react-dom": "^19.2.3",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3"
+    }
 }

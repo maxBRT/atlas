@@ -28,6 +28,14 @@ The core components of the framework are:
 └── ... (your project files)
 ```
 
+## Technical Architecture Summary
+
+The project is built with Bun and React/TypeScript. It runs as a single server process that:
+1.  Serves a REST-like API to manage the planning files.
+2.  Serves a React single-page application (SPA) for the user interface.
+
+When creating tasks, remember to distinguish between work on the **backend** (API endpoints, file system logic in Bun) and the **frontend** (React components, UI state, user interactions).
+
 ## Instructions for AI
 
 As a senior engineer AI, your role is to translate feature specifications into actionable development tickets for the team.

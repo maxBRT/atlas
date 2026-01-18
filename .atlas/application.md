@@ -41,12 +41,11 @@ The Atlas application will be built as a single, self-contained command-line too
 -   **Core Technology:** **Bun**
     -   **Why:** Bun is chosen for its exceptional performance and its all-in-one nature. It functions as the JavaScript runtime, package manager, server, and bundler, drastically simplifying the project's dependencies and build process.
 
--   **Architecture:** The tool consists of two main parts packaged together:
-    1.  **Backend Server:** A lightweight backend will be built using the native `Bun.serve` API. Its responsibilities are:
-        -   Routing will be handled directly via `Bun.serve` APIs for maximum minimalism.
-        -   To serve the static frontend UI files.
-        -   To provide a simple REST-like API for file operations (listing, reading, writing, deleting) within the `.atlas` directory of the project where the tool is run.
-    2.  **Frontend UI:** A clean, single-page application (SPA) will be built using **React** and **TypeScript**. This will provide the user-friendly web interface for managing the planning files.
+-   **Architecture:** The application will be a monolithic, single-process application powered by a single Bun server. This server will handle all application logic, including:
+    -   **API:** Exposing a REST-like API for file operations (listing, reading, writing, deleting) on the markdown files within the `.atlas` directory.
+    -   **Frontend:** Serving a single-page application (SPA) built with React and TypeScript, which acts as the user-facing web interface.
+    
+    This unified architecture, where a single server provides both the API and the web client, simplifies development, deployment, and execution.
 
 -   **Build & Distribution:**
     -   **Why:** To make installation and usage as frictionless as possible, the entire application (Bun runtime, backend server, and the pre-built React UI) will be compiled into a **single, standalone executable** using `bun build --compile`.
