@@ -36,6 +36,32 @@ The project is built with Bun and React/TypeScript. It runs as a single server p
 
 When creating tasks, remember to distinguish between work on the **backend** (API endpoints, file system logic in Bun) and the **frontend** (React components, UI state, user interactions).
 
+## API Validation
+
+This project uses **Zod** for validating API endpoints. When implementing API endpoints:
+
+-   **Define Zod schemas** for request bodies, query parameters, and path parameters
+-   **Validate incoming data** before processing to ensure type safety and data integrity
+-   **Use Zod's type inference** to derive TypeScript types from schemas (e.g., `z.infer<typeof schema>`)
+-   **Return clear error messages** when validation fails, using Zod's error handling
+
+Example pattern:
+```typescript
+import { z } from 'zod';
+
+const requestSchema = z.object({
+  name: z.string(),
+  priority: z.enum(['low', 'medium', 'high'])
+});
+
+// In your endpoint handler
+const result = requestSchema.safeParse(await request.json());
+if (!result.success) {
+  return new Response(JSON.stringify({ error: result.error }), { status: 400 });
+}
+// Use result.data with full type safety
+```
+
 ## Instructions for AI
 
 As a senior engineer AI, your role is to translate feature specifications into actionable development tickets for the team.

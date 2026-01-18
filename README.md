@@ -33,6 +33,7 @@ Atlas is built as a **single-process Bun application** that:
 │   ├── application.md      # Main application spec
 │   ├── context.md          # AI context and instructions
 │   ├── roadmap.md          # Feature roadmap
+│   ├── database.dbml       # Database schema (DBML)
 │   ├── specs/              # Feature specifications
 │   └── tasks/              # Development tasks/tickets
 ├── src/
@@ -92,6 +93,7 @@ This creates:
 - Default `application.md` template
 - `context.md` with AI collaboration instructions
 - Empty `roadmap.md`
+- Empty `database.dbml` for database schema
 - `specs/` and `tasks/` subdirectories
 
 ## Data Model
