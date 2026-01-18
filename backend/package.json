@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run index.ts",
+    "dev": "bun run --hot index.ts",
+    "build": "bun build index.ts --outdir ./build",
+    "lint": "eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
