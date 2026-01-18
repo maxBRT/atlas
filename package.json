@@ -1,0 +1,8 @@
+{
+    "name": "atlas",
+    "workspaces": [
+        "backend",
+        "frontend",
+        "packages/*"
+    ]
+}

@@ -43,6 +43,7 @@ The Atlas application will be built as a single, self-contained command-line too
 
 -   **Architecture:** The tool consists of two main parts packaged together:
     1.  **Backend Server:** A lightweight backend will be built using the native `Bun.serve` API. Its responsibilities are:
+        -   Routing will be handled directly via `Bun.serve` APIs for maximum minimalism.
         -   To serve the static frontend UI files.
         -   To provide a simple REST-like API for file operations (listing, reading, writing, deleting) within the `.atlas` directory of the project where the tool is run.
     2.  **Frontend UI:** A clean, single-page application (SPA) will be built using **React** and **TypeScript**. This will provide the user-friendly web interface for managing the planning files.
