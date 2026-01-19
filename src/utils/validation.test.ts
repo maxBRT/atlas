@@ -169,8 +169,15 @@ describe("validateParams", () => {
         id: z.string(),
     });
 
+    // Helper to create a request with params (simulating Bun's router behavior)
+    function createRequestWithParams(url: string, params: Record<string, string>) {
+        const req = new Request(url);
+        (req as any).params = params;
+        return req;
+    }
+
     test("returns data for valid params", async () => {
-        const req = new Request("http://localhost/test?id=123");
+        const req = createRequestWithParams("http://localhost/test/123", { id: "123" });
 
         const result = await validateParams(paramsSchema, req);
 
@@ -181,7 +188,7 @@ describe("validateParams", () => {
     });
 
     test("returns error for missing param", async () => {
-        const req = new Request("http://localhost/test");
+        const req = createRequestWithParams("http://localhost/test", {});
 
         const result = await validateParams(paramsSchema, req);
 

@@ -62,6 +62,51 @@ if (!result.success) {
 // Use result.data with full type safety
 ```
 
+## Testing
+
+This project uses **Bun's built-in test runner** (`bun test`). Tests are colocated with the code they test, using the `.test.ts` suffix.
+
+### Running Tests
+
+```bash
+# Run all tests
+bun test
+
+# Run tests for a specific file
+bun test src/features/tasks/handlers/tasks.test.ts
+
+# Run tests matching a pattern
+bun test --filter "tasks"
+```
+
+### Test Patterns
+
+-   **Use `bun:test` imports**: `import { test, expect, describe, beforeAll, afterAll, afterEach } from "bun:test"`
+-   **Mock requests with params**: Create a helper function to attach params to Request objects
+-   **Clean up test files**: Use `afterEach` and `afterAll` hooks to remove test-created files
+-   **Test both success and error cases**: Include tests for validation errors (400), not found (404), and happy paths
+-   **Test security**: Include tests for path traversal prevention and input validation
+
+Example test file structure:
+```typescript
+import { test, expect, describe, afterEach } from "bun:test";
+
+function createMockRequest(url: string, options = {}) {
+    const { params, ...requestOptions } = options;
+    const req = new Request(url, requestOptions);
+    if (params) (req as any).params = params;
+    return req;
+}
+
+describe("GET /api/resource", () => {
+    afterEach(async () => { /* cleanup */ });
+
+    test("returns data for valid request", async () => { /* ... */ });
+    test("returns 404 for non-existent resource", async () => { /* ... */ });
+    test("returns 400 for invalid input", async () => { /* ... */ });
+});
+```
+
 ## Instructions for AI
 
 As a senior engineer AI, your role is to translate feature specifications into actionable development tickets for the team.
