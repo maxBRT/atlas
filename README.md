@@ -1,24 +1,22 @@
 # Atlas
 
-A lightweight planning framework for software development that keeps your plans in sync with your code. Atlas stores all planning and specification data as markdown files within your project repository, making it easy for both humans and AI agents to collaborate on the same up-to-date planning data.
+A simple planning framework for software development projects.
 
 ## What is Atlas?
 
-Atlas helps you manage:
-- **Application Specs** – Central document outlining your overall application
-- **Roadmap** – Prioritized implementation order for features
-- **Database Schema** - Define and visualize database schema using DBML
-- **Feature Specifications** – Detailed specs as individual Markdown files
-- **Tasks/Tickets** - Development tasks as individual Markdown files
-- **AI Context** – Snapshot of project structure and conventions for AI collaboration
+Atlas is a way for me to:
+- Centralise planning document
+- Detail specs as individual Markdown files
+- Create development tasks as individual Markdown files in my editor
+- Facilitate collaboration with AI agents
 
-All data lives in a `.atlas/` directory at the root of your project, keeping everything version-controlled alongside your code.
+All data lives in a `.atlas/` directory at the root of the project, keeping everything version-controlled alongside your code.
 
 ## Architecture
 
-Atlas is built as a **single-process Bun application** that:
+Atlas is built as a **single-process Bun cli** that:
 1. Serves a REST-like API for managing `.atlas/` markdown files
-2. Serves a React SPA for the web-based UI
+2. Serves a React SPA for the web-based UI (Mainly for fun I personally use my editor)
 
 ### Technology Stack
 - **Runtime & Server**: Bun (handles server, bundling, and package management)
@@ -32,8 +30,6 @@ Atlas is built as a **single-process Bun application** that:
 ├── .atlas/                 # Planning data
 │   ├── application.md      # Main application spec
 │   ├── context.md          # AI context and instructions
-│   ├── roadmap.md          # Feature roadmap
-│   ├── database.dbml       # Database schema (DBML)
 │   ├── specs/              # Feature specifications
 │   └── tasks/              # Development tasks/tickets
 ├── src/
@@ -66,21 +62,50 @@ Start the development server with hot reload:
 bun run dev
 ```
 
-This starts the server with automatic reloading on file changes.
+This starts the server with automatic reloading on file changes. The web UI will be available at `http://localhost:6969`.
 
-### Building
+### Building the Frontend
 
-Build the application: 
+Build the frontend assets for production:
 
 ```bash
 bun run build
 ```
+This will create a production-ready build of the React SPA in the `dist/public` directory.
 
-To compile to frontend assets.
+## Usage
 
-## CLI Commands
+### Using the CLI
 
-### `atlas init`
+The project includes a command-line interface (CLI) for managing your Atlas project. You can run the CLI directly or install it globally.
+
+**Running directly:**
+```bash
+bun run src/cli/index.ts <command>
+```
+
+**Installing the CLI Globally:**
+
+To use the `atlas` command directly from anywhere in your system, you can link the package globally. `bun link` is the recommended way to create a global symlink for a local package.
+
+```bash
+bun link
+```
+This will make the `atlas` command available system-wide. After running this, you can execute commands like `atlas <command>`.
+
+### Compiling a Standalone Binary
+
+For a zero-dependency option, you can compile the CLI into a single, standalone executable.
+
+```bash
+bun build ./src/cli/index.ts --compile --outfile atlas
+```
+
+This creates a binary named `atlas` in your current directory. You can move this file to a directory in your system's `$PATH` (e.g., `/usr/local/bin`) to make it globally available.
+
+### CLI Commands
+
+#### `atlas init`
 
 Initialize a new project with the Atlas planning framework:
 
@@ -89,12 +114,17 @@ atlas init
 ```
 
 This creates:
-- `.atlas/` directory structure
-- Default `application.md` template
-- `context.md` with AI collaboration instructions
-- Empty `roadmap.md`
-- Empty `database.dbml` for database schema
-- `specs/` and `tasks/` subdirectories
+- `.atlas/` directory with `specs/` and `tasks/` subdirectories.
+- A default `application.md` file.
+- A `context.md` file with instructions for AI collaboration.
+
+#### `atlas web`
+
+Launches the web UI.
+
+```bash
+atlas web
+```
 
 ## Data Model
 
@@ -123,10 +153,6 @@ Task description and implementation details...
 - **Facilitate AI Collaboration**: Make it easy to plan with AI and delegate tasks to AI agents
 - **Remove Friction**: Eliminate the overhead of external planning tools
 
-## Future Plans
-
-The application will eventually be compiled into a **single standalone executable** using `bun build --compile`, requiring no external dependencies (not even Node.js or Bun) on the user's machine.
-
 ## License
 
-Private project
+MIT License

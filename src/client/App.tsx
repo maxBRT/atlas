@@ -1,10 +1,18 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { AppProvider } from './contexts/AppContext';
+import { Layout } from './components/Layout';
+import { AppRoutes } from './routes';
+import './styles/index.css';
 
 export function App() {
     return (
-        <div style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>
-            <h1>🚀 Hello from React via Bun!</h1>
-            <p>Build process configured successfully.</p>
-        </div>
+        <BrowserRouter>
+            <AppProvider>
+                <Layout>
+                    <AppRoutes />
+                </Layout>
+            </AppProvider>
+        </BrowserRouter>
     );
 }

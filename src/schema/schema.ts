@@ -27,6 +27,19 @@ export const createFileSchema = z.object({
 
 export type CreateFile = z.infer<typeof createFileSchema>;
 
+// Document schemas
+export const documentContentSchema = z.object({
+    content: z.string(),
+});
+
+export type DocumentContent = z.infer<typeof documentContentSchema>;
+
+export const documentRenameSchema = z.object({
+    newFilename: fileNameSchema,
+});
+
+export type DocumentRename = z.infer<typeof documentRenameSchema>;
+
 
 export const taskIdSchema = z.string().regex(TASK_ID_REGEX);
 
@@ -53,6 +66,3 @@ export const createTaskSchema = z.object({
 });
 
 export type CreateTask = z.infer<typeof createTaskSchema>;
-
-
-

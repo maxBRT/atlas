@@ -1,0 +1,29 @@
+# AI Context
+
+This document provides context for the AI developer working on this project. It outlines the planning framework used, which is based on the Atlas application.
+
+## The Atlas Planning Framework
+
+This project uses the Atlas planning framework, which stores all planning and specification data as markdown files with YAML frontmatter within a `.atlas` directory at the root of the project repository.
+
+This approach ensures that the plan is always in sync with the code. It allows both human developers and AI agents to interact with the same, up-to-date planning data.
+
+The core components of the framework are:
+- **Application Spec (`application.md`):** A central document that outlines the overall application.
+- **Roadmap (`roadmap.md`):** A prioritized implementation order for features.
+- **Feature Specifications (`/specs`):** Detailed feature specifications as individual markdown files.
+- **Tasks/Tickets (`/tasks`):** Development tasks or tickets as individual markdown files.
+- **AI Context (`context.md`):** This file, which is a snapshot of the project's structure and conventions.
+
+## Generic File/Directory Structure
+
+```
+.
+├── .atlas
+│   ├── application.md
+│   ├── context.md
+│   ├── roadmap.md
+│   ├── specs
+│   └── tasks
+└── ... (your project files)
+```

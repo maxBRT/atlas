@@ -3,6 +3,7 @@ export interface metadata {
     status: string;
     priority: string;
     parentSpec?: string;
+    dependsOn?: string[];
 }
 
 export interface Task {

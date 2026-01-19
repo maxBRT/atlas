@@ -1,0 +1,35 @@
+
+.editor-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.editor-view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+    flex-shrink: 0;
+}
+
+.editor-view-header .filename {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.editor-view-header .actions {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.editor-view-main {
+    flex-grow: 1;
+    padding: var(--space-xl);
+    overflow-y: auto;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}

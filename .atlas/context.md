@@ -34,7 +34,61 @@ The project is built with Bun and React/TypeScript. It runs as a single server p
 1.  Serves a REST-like API to manage the planning files.
 2.  Serves a React single-page application (SPA) for the user interface.
 
-When creating tasks, remember to distinguish between work on the **backend** (API endpoints, file system logic in Bun) and the **frontend** (React components, UI state, user interactions).
+It also includes a command-line interface (CLI) for project management tasks.
+
+When creating tasks, remember to distinguish between work on the **backend** (API endpoints, file system logic in Bun), the **frontend** (React components, UI state, user interactions), and the **CLI** (commands, arguments, file system operations).
+
+## CLI Architecture
+
+The CLI provides commands for managing the Atlas project.
+
+### Directory Structure
+
+```
+src/cli/
+├── index.ts              # Main CLI entry point with command routing
+└── commands/
+    ├── init.ts           # Logic for the 'init' command
+    └── web.ts            # Logic for the 'web' command
+```
+
+### Entry Point
+
+-   **`src/cli/index.ts`**: This is the executable entry point for the `atlas` command, defined in `package.json`'s `bin` field.
+-   It uses `process.argv` to parse commands and arguments.
+-   A `switch` statement routes to the appropriate command module.
+
+### Adding a New Command
+
+1.  Create a new file in `src/cli/commands/` (e.g., `my-command.ts`).
+2.  Export a handler function from that file.
+3.  Import the handler in `src/cli/index.ts` and add a new `case` to the `switch` statement.
+
+### Running CLI commands
+
+To run the CLI, use `bun run` with the path to the entry point:
+`bun run src/cli/index.ts <command>`
+
+For example:
+`bun run src/cli/index.ts init`
+
+### CLI Commands
+
+#### `init`
+
+-   **Description:** Initializes a new Atlas project in the current directory.
+-   **Behavior:**
+    -   Creates a `.atlas` directory.
+    -   Inside `.atlas`, it creates `specs` and `tasks` subdirectories.
+    -   It also creates default `application.md` and `context.md` files.
+    -   If an `.atlas` directory already exists, the command will abort to prevent overwriting an existing project.
+
+#### `web`
+
+-   **Description:** Launches the web UI.
+-   **Behavior:**
+    -   Starts the web server in the background.
+    -   The UI is accessible at `http://localhost:6969`.
 
 ## API Validation
 
