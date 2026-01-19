@@ -82,12 +82,12 @@ export const validateQuery = async <T extends ZodType>(schema: T, req: Request):
 }
 
 /**
- * Validates URL search params against a Zod schema.
+ * Validates URL route params (e.g., /users/:id) against a Zod schema.
  * Returns validated data on success, or a 400 error Response on failure.
  */
 export const validateParams = async <T extends ZodType>(schema: T, req: Request): Promise<{ error: Response } | { data: z.infer<T> }> => {
     try {
-        const params = Object.fromEntries(new URL(req.url).searchParams);
+        const params = (req as any).params;
         const result = schema.safeParse(params);
         if (!result.success) {
             return { error: validationErrorResponse(result.error) };

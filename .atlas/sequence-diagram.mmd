@@ -1,0 +1,56 @@
+sequenceDiagram
+    participant User
+    participant Browser as React SPA
+    participant Server as Bun Server
+    participant Validator as Zod Schema
+    participant FS as File System (.atlas/)
+
+    %% Initial Load
+    User->>Browser: Open Atlas UI
+    Browser->>Server: GET /
+    Server-->>Browser: Serve React SPA
+
+    %% Application Spec Flow
+    User->>Browser: View Application Spec
+    Browser->>Server: GET /api/application
+    Server->>FS: Read application.md
+    FS-->>Server: File contents
+    Server-->>Browser: JSON response
+    Browser-->>User: Display spec in editor
+
+    User->>Browser: Edit & Save spec
+    Browser->>Server: POST /api/application
+    Server->>Validator: Validate request body
+    Validator-->>Server: Typed data
+    Server->>FS: Write application.md
+    FS-->>Server: Success
+    Server-->>Browser: 200 OK
+
+    %% Feature Specs Flow
+    User->>Browser: Navigate to Specs
+    Browser->>Server: GET /api/specs
+    Server->>FS: List files in specs/
+    FS-->>Server: File list
+    Server-->>Browser: JSON array of specs
+
+    User->>Browser: View specific spec
+    Browser->>Server: GET /api/specs/:filename
+    Server->>FS: Read spec file
+    FS-->>Server: Contents + YAML frontmatter
+    Server-->>Browser: Parsed spec data
+
+    User->>Browser: Create new spec
+    Browser->>Server: POST /api/specs
+    Server->>Validator: Validate request
+    Validator-->>Server: Valid data
+    Server->>FS: Write new spec file
+    FS-->>Server: Success
+    Server-->>Browser: Created spec
+
+    %% Task Management Flow
+    User->>Browser: View/Create tasks
+    Browser->>Server: GET/POST /api/tasks
+    Server->>FS: Read/Write tasks/*.md
+    FS-->>Server: Task data with metadata
+    Server-->>Browser: JSON response
+    Browser-->>User: Display task board

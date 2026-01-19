@@ -6,7 +6,7 @@ This roadmap outlines the prioritized implementation order for the Atlas plannin
 
 1. **Initial Project Scaffolding** - Project structure, build configuration, and basic server setup
 
-## Phase 2: Core API Infrastructure
+## Phase 2: Core API Infrastructure (Complete)
 
 2. **API Validation with Zod** - Type-safe request validation across all endpoints
 3. **Main Application Spec API** - Backend endpoints for reading/writing `application.md`
