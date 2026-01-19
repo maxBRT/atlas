@@ -58,9 +58,6 @@ export function HomePage() {
     return (
         <div style={containerStyle}>
             <h1 style={titleStyle}>Atlas Planning</h1>
-            <p style={subtitleStyle}>
-                Manage your project's planning files with ease. Select an item from the sidebar to get started.
-            </p>
             <div style={cardContainerStyle}>
                 <div style={cardStyle}>
                     <h3 style={cardTitleStyle}>Documents</h3>

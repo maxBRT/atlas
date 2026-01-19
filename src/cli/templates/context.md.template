@@ -10,7 +10,6 @@ This approach ensures that the plan is always in sync with the code. It allows b
 
 The core components of the framework are:
 - **Application Spec (`application.md`):** A central document that outlines the overall application.
-- **Roadmap (`roadmap.md`):** A prioritized implementation order for features.
 - **Feature Specifications (`/specs`):** Detailed feature specifications as individual markdown files.
 - **Tasks/Tickets (`/tasks`):** Development tasks or tickets as individual markdown files.
 - **AI Context (`context.md`):** This file, which is a snapshot of the project's structure and conventions.
@@ -22,7 +21,6 @@ The core components of the framework are:
 ├── .atlas
 │   ├── application.md
 │   ├── context.md
-│   ├── roadmap.md
 │   ├── specs
 │   └── tasks
 └── ... (your project files)
