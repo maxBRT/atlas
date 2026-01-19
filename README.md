@@ -5,12 +5,12 @@ A lightweight planning framework for software development that keeps your plans 
 ## What is Atlas?
 
 Atlas helps you manage:
-- **Application Specs** - Central document outlining your overall application
-- **Roadmap** - Prioritized implementation order for features
+- **Application Specs** – Central document outlining your overall application
+- **Roadmap** – Prioritized implementation order for features
 - **Database Schema** - Define and visualize database schema using DBML
-- **Feature Specifications** - Detailed specs as individual markdown files
-- **Tasks/Tickets** - Development tasks as individual markdown files
-- **AI Context** - Snapshot of project structure and conventions for AI collaboration
+- **Feature Specifications** – Detailed specs as individual Markdown files
+- **Tasks/Tickets** - Development tasks as individual Markdown files
+- **AI Context** – Snapshot of project structure and conventions for AI collaboration
 
 All data lives in a `.atlas/` directory at the root of your project, keeping everything version-controlled alongside your code.
 
@@ -66,17 +66,17 @@ Start the development server with hot reload:
 bun run dev
 ```
 
-This starts the server on `http://localhost:6969` with automatic reloading on file changes.
+This starts the server with automatic reloading on file changes.
 
 ### Building
 
-Build the application for production:
+Build the application: 
 
 ```bash
 bun run build
 ```
 
-This compiles the frontend assets and prepares the application for deployment.
+To compile to frontend assets.
 
 ## CLI Commands
 
