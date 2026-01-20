@@ -127,12 +127,16 @@ export const specsApi = {
     delete: (filename: string) => api.delete<void>(`/specs/${filename}`),
 };
 
-export interface TaskData {
+export interface TaskMetadata {
     id: string;
-    type: string;
-    status: string;
-    priority: string;
-    parent_spec?: string;
+    status: 'todo' | 'in-progress' | 'complete';
+    priority: 'low' | 'medium' | 'high';
+    parentSpec?: string;
+    dependsOn?: string[];
+}
+
+export interface TaskData {
+    metadata: TaskMetadata;
     content: string;
 }
 
